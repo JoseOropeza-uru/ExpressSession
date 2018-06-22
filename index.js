@@ -23,11 +23,9 @@ passport.use(require('./helpers/localStrategy'));
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
-  
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
-
 app.listen(config.port, function () {
-  console.log('Example app listening on port 3000!');
+    console.log('Example app listening on port 3000!');
 });

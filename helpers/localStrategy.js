@@ -2,8 +2,11 @@ let User = require('./users');
 let passport = require('passport');
 let localStrategy = require('passport-local').Strategy;
 
-module.exports = new localStrategy(function(username, password, done) {
-    User.getUserByUsername(username).then((user)=>{
+module.exports = new localStrategy({
+    usernameField: 'ced',
+    passwordField: 'password'
+},function(ced, password, done) {
+    User.getUserByUsername(ced).then((user)=>{
         if (user.error) {
             return done(null, false);
         }
@@ -13,9 +16,9 @@ module.exports = new localStrategy(function(username, password, done) {
             else
                 return done(null, false);
         }).catch((err)=>{
-            throw err;
+            return done(null, false);
         });
     }).catch((err)=>{
-        throw err;
+        return done(null, false);
     });
 });

@@ -44,7 +44,7 @@ function XHR() {
                     }
                 };
                 xmlObject.open(method, url, true);
-
+                xmlObject.withCredentials=true;
                 for (var header in headers) {
                     xmlObject.setRequestHeader(header, headers[header]);
                 }
